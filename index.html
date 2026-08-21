@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameZone Toys - Gaming Toy Shop</title>
+    <!-- Google Fonts for Cartoon Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FFD93D; /* Cartoon Yellow */
+            --secondary: #FF6B6B; /* Cartoon Red */
+            --accent: #4ECDC4; /* Cartoon Teal */
+            --dark: #292F36;
+            --light: #F7FFF7;
+            --border-width: 3px;
+            --shadow: 4px 4px 0px var(--dark);
+            --radius: 15px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Fredoka One', cursive;
+            letter-spacing: 1px;
+        }
+
+        /* Header */
+        header {
+            background: var(--primary);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: var(--border-width) solid var(--dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: var(--dark);
+            text-shadow: 2px 2px 0px #fff;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 700;
+            margin-left: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            background: var(--dark);
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, var(--accent), #6C5CE7);
+            color: white;
+            border-bottom: var(--border-width) solid var(--dark);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            text-shadow: 3px 3px 0px var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Fredoka One', cursive;
+            border: var(--border-width) solid var(--dark);
+            box-shadow: var(--shadow);
+            transition: transform 0.1s;
+            cursor: pointer;
+        }
+
+        .btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px var(--dark);
+        }
+
+        /* Products Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            text-shadow: 2px 2px 0px var(--dark);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border: var(--border-width) solid var(--dark);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: var(--border-width) solid var(--dark);
+            background: #eee;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .product-desc {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .price-tag {
+            background: var(--primary);
+            color: var(--dark);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-align: center;
+            border: 2px solid var(--dark);
+            display: inline-block;
+            align-self: flex-start;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            background: #f0f0f0;
+            border: 2px dashed var(--dark);
+            border-radius: var(--radius);
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: var(--border-width) solid var(--dark);
+        }
+
+        /* Theme Switcher */
+        .theme-switcher {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 1rem;
+            border: var(--border-width) solid var(--dark);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+        }
+        
+        .theme-btn {
+            display: block;
+            width: 100%;
+            margin: 5px 0;
+            padding: 8px;
+            border: 2px solid var(--dark);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">🎮 GameZone Toys</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="admin/index.html">Admin Login</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to the Ultimate Gaming Toy Shop!</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Cool toys for cool gamers.</p>
+        <a href="#products" class="btn">Shop Now</a>
+    </section>
+
+    <div class="container" id="products">
+        <h2 class="section-title">Featured Toys</h2>
+        <div class="products-grid" id="productsContainer">
+            <!-- Products will be loaded here -->
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 GameZone Toys. Made with 🧡 for Gamers.</p>
+    </footer>
+
+    <script>
+        // --- CONFIGURATION ---
+        // If you have deployed the Google Script, paste the URL below inside the quotes.
+        // Otherwise, leave it empty to use LocalStorage (demo mode).
+        const GOOGLE_SCRIPT_URL = ""; 
+        // ---------------------
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProducts();
+        });
+
+        async function loadProducts() {
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '<p style="text-align:center; width:100%;">Loading toys...</p>';
+
+            // 1. Try to fetch from Google Sheets if URL is provided
+            if (GOOGLE_SCRIPT_URL) {
+                try {
+                    const response = await fetch(GOOGLE_SCRIPT_URL + '?action=getProducts');
+                    const data = await response.json();
+                    
+                    if (data.success && data.products.length > 0) {
+                        renderProducts(data.products);
+                        return;
+                    }
+                } catch (error) {
+                    console.error("Error fetching from Google Sheets:", error);
+                }
+            }
+
+            // 2. Fallback to LocalStorage
+            const localProducts = JSON.parse(localStorage.getItem('gamingToys_products')) || [];
+            
+            if (localProducts.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>📦 No toys yet!</h3>
+                        <p>Ask the admin to add some cool gaming toys.</p>
+                        <br>
+                        <a href="admin/index.html" class="btn">Go to Admin</a>
+                    </div>
+                `;
+            } else {
+                renderProducts(localProducts);
+            }
+        }
+
+        function renderProducts(products) {
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '';
+
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                // Use FinalPrice for display
+                const price = product.finalPrice ? parseFloat(product.finalPrice).toFixed(2) : '0.00';
+
+                card.innerHTML = `
+                    <img src="${product.image || 'https://via.placeholder.com/300?text=No+Image'}" alt="${product.name}" class="product-img" onerror="this.src='https://via.placeholder.com/300?text=Image+Error'">
+                    <div class="product-info">
+                        <div>
+                            <h3 class="product-title">${product.name}</h3>
+                            <p class="product-desc">${product.description}</p>
+                        </div>
+                        <div class="price-tag">AED ${price}</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>
